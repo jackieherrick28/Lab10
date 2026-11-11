@@ -23,6 +23,7 @@
       #   SIGSTOP: Signal Stop. Pause/suspend execution.
           # -STOP <pid>
   # c. How to run the program – available command-line options
+          
           # gcc SIGTERM.c
           # ./a.out
 
@@ -38,5 +39,10 @@
           # ./a.out
           # kill -SIGUSR1 PID_Number
           
-          # make
-          # make clean
+         # gcc tennis2.c -o tennis2
+         # ./tennis2
+         # make clean
+
+         # gcc tennis1.c -o tennis1
+         # ./tennis1 PID_Number
+         # make clean
