@@ -3,9 +3,11 @@
 * Class: CPE 2600 121
 * Description: This program takes in the receiver's PID and generaters a random integer to send
 * Author: Jackie Herrick
-* Date: 11/07/26
+* Date: 11/13/26
+* make
 * gcc send_signal.c -o send_signal
 * ./send_signal
+* make clean
 **************************************************************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
