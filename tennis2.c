@@ -14,13 +14,17 @@
 
 int main(void)
 {
+    int Player2 = 0;//tracks index to points for current game
+    int Player1 = 0;//tracks index to points for current game
     int message = 0;
-    int Player2 = 0;
-    int Player1 = 0;
+    pid_t sender = 0;
+
     int over = 0;
     int type = 0;
-    pid_t sender = 0;
+
     const char *points[] = {"0","Love", "15", "30", "40"};
+    // char *score_player1[10];
+    // char *score_player2[10];
 
     srand((unsigned int)time(NULL) ^ (unsigned int)getpid());
 
@@ -64,26 +68,29 @@ int main(void)
                 printf("\n=================================\n");
                 printf("         GAME FINISHED\n");
                 printf("=================================\n");
-                printf("Score for Player1: %s\n", points[Player1]);
-                printf("Score for Player2: %s\n",points[Player2]);
-                if (Player2 > Player1)
+                printf("Score for Player1: %s\n", points[Player2]);
+                printf("Score for Player2: %s\n",points[Player1]);
+                if (Player1 > Player2)
                 {
                     printf("\n\nWinner: Player2\n");
+                    break;
                 }
-                else if (Player1 > Player2)
+                else if (Player2 > Player1)
                 {
                     printf("\n\nWinner: Player1\n");
+                    break;
                 }
                 else
                 {
                     printf("\n\nMatch ended in a tie.\n");
+                    continue;
                 }
 
-                break;
             }
 
             printf("Waiting for the next serve...\n");
             fflush(stdout);
+            send_message(sender, MESSAGE(MSG_MISS, 0, 0, 0));
             continue;
         }
 
