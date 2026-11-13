@@ -4,8 +4,10 @@
 * Description: This program takes the random integer that was send from them through their PID
 * Author: Jackie Herrick
 * Date: 11/07/26
+* make
 * gcc rev_signal.c -o rev_signal
 * ./rev_signal
+* make clean
 **************************************************************************************************************************************/
 #include <stdio.h>
 #include <stdlib.h>
