@@ -16,14 +16,17 @@
 
 int main(int argc, char *argv[])
 {
-    int Player2 = 0;
-    int Player1 = 0;
+    int Player2 = 0;//tracks index to points for current game
+    int Player1 = 0;//tracks index to points for current game
     int message = 0;
     pid_t sender = 0;
     int type = 0;
     int exchanges = 0;
+    int serve_count = 0;
 
-    const char *points[] = {"0","Love", "15", "30", "40"};
+    const char *points[] = {"0","Love", "15", "30", "40"};//score rules according to google
+    // char *score_player1[10];//holds score for each game 
+    // char *score_player2[10];//holds score for each game 
 
     if (argc != 2)
     {
@@ -50,7 +53,7 @@ int main(int argc, char *argv[])
     printf("Player1 PID: %d\n", Player1_pid);
 
     sleep(1);
-
+    printf("=========== Game 1 ==============\n");
     serve(Player1_pid);
 
     while (1)
@@ -83,27 +86,44 @@ int main(int argc, char *argv[])
             if (exchanges >= MAX_EXCHANGES)
             {
                 printf("\nMaximum exchanges reached.\n");
-                printf("Ending match.\n");
-                send_message( Player1_pid, MESSAGE( MSG_SCORE, Player2, Player1, 1));
-                printf("\n=================================\n");
-                printf("         GAME FINISHED\n");
-                printf("=================================\n");
-                printf("Score for Player1: %s\n", points[Player2]);
-                printf("Score for Player2: %s\n",points[Player1]);
-                if (Player2 > Player1)
+                if (Player1 > Player2)
                 {
+                    printf("Ending match.\n");
+                    send_message( Player1_pid, MESSAGE( MSG_SCORE, Player2, Player1, 1));
+                    printf("\n=================================\n");
+                    printf("         GAME FINISHED\n");
+                    printf("=================================\n");
+                    printf("Score for Player1: %s\n", points[Player2]);
+                    printf("Score for Player2: %s\n",points[Player1]);
                     printf("\n\nWinner: Player2\n");
+                    break;
                 }
-                else if (Player1 > Player2)
+                else if (Player2 > Player1)
                 {
+                    printf("Ending match.\n");
+                    send_message( Player1_pid, MESSAGE( MSG_SCORE, Player2, Player1, 1));
+                    printf("\n=================================\n");
+                    printf("         GAME FINISHED\n");
+                    printf("=================================\n");
+                    printf("Score for Player1: %s\n", points[Player2]);
+                    printf("Score for Player2: %s\n",points[Player1]);
                     printf("\n\nWinner: Player1\n");
+                    break;
                 }
+                else if(serve_count == 0)
+                {
+                     printf("\n\nBut match ended in a tie.\n");
+                     printf("\nPlayer2 is starting a new game..\n");
+                     printf("waiting for the next serve...\n\n");
+                     serve(Player1_pid);
+                     serve_count++;
+                     continue;
+                } 
                 else
                 {
-                     printf("\n\nMatch ended in a tie.\n");
+
                 }
                 
-                break;
             }
 
             printf("\nPlayer2: Received the returned ball!\n");
