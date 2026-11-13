@@ -146,7 +146,7 @@ static void display_score(int Player1, int Player2)
             printf("score for player2: %s\n", points[Player2]);
             printf("\nPlayer2 has the Advantage!!!\n");
         }
-}
+} 
 
 #endif
 
