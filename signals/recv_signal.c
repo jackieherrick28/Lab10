@@ -1,12 +1,12 @@
 /**************************************************************************************************************************************
-* Filename: rev_signal.c
+* Filename: recv_signal.c
 * Class: CPE 2600 121
 * Description: This program takes the random integer that was send from them through their PID
 * Author: Jackie Herrick
 * Date: 11/07/26
 * make
-* gcc rev_signal.c -o rev_signal
-* ./rev_signal
+* gcc recv_signal.c -o recv_signal
+* ./recv_signal
 * make clean
 **************************************************************************************************************************************/
 #include <stdio.h>
