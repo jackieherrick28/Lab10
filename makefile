@@ -2,19 +2,19 @@ CC = gcc
 CFLAGS = -Wall -Wextra -g
 LIBS = -lm
 
-all: tennis1 tennis2
+all: send_signal recv_signal
 
-tennis1: tennis1.o
-	$(CC) tennis1.o $(LIBS) -o tennis1
+send_signal: send_signal.o
+	$(CC) send_signal.o $(LIBS) -o send_signal
 
-tennis2: tennis2.o
-	$(CC) tennis2.o $(LIBS) -o tennis2
+recv_signal: recv_signal.o
+	$(CC) recv_signal.o $(LIBS) -o recv_signal
 
-tennis1.o: tennis1.c tennis.h tennis1.h
-	$(CC) $(CFLAGS) -c tennis1.c
+send_signal.o: send_signal.c
+	$(CC) $(CFLAGS) -c send_signal.c
 
-tennis2.o: tennis2.c tennis.h
-	$(CC) $(CFLAGS) -c tennis2.c
+recv_signal.o: recv_signal.c
+	$(CC) $(CFLAGS) -c recv_signal.c
 
 clean:
-	rm -f *.o tennis1 tennis2
+	rm -f *.o send_signal recv_signal
